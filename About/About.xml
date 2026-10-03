@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>While You Are Nearby Performance Fix</name>
+  <author>ifchen0</author>
+  <packageId>ifchen0.whileyouarenearbyfix</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <description>Unofficial performance fix for While You Are Nearby (steamcommunity.com/sharedfiles/filedetails/?id=2784585275).
+
+Symptom: short stutters (single frames of tens of milliseconds) when colonists pick far-away jobs. In Dubs Performance Analyzer it shows up as MjRimMods.WhileYouAreNearby.JobGiver_Work_TryIssueJobPackagePatch:After_TryIssueJobPackage, at about 1.5 ms per call.
+
+Cause: when a colonist is given a far-away job, While You Are Nearby looks for a job within its search radius (12 cells by default) to do first. For cell-based work (sowing, roofing, snow clearing and so on) it checks every candidate cell on the whole map - whether there is a job on it and whether the colonist can reach it - and only then compares the distance. On a map with large growing zones that is hundreds or thousands of expensive checks, almost all of them for cells that are too far away anyway.
+
+Fix: only cells inside the search radius are handed to its loop. Every cell it could pick lies inside that radius, so the chosen job is exactly the same. Item-based work already filtered by distance first and is not touched.
+
+What it does not fix: the work givers still list every candidate cell before the far ones are dropped, and While You Are Nearby still repeats a job search that vanilla has just done. In my colony the biggest spikes roughly halved (48 ms to 25 ms), but they did not go away. If they still bother you, excluding Growing, Construction or Cleaning under "Excluded nearby work types" in While You Are Nearby's settings removes most of the remaining cost, at the price of colonists no longer doing those jobs on the way.
+
+Notes:
+- Safe to add to or remove from an existing save.
+- Uses While You Are Nearby's own search radius setting.
+- Load after While You Are Nearby.</description>
+  <modDependencies>
+    <li><packageId>brrainz.harmony</packageId><displayName>Harmony</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl></li>
+    <li><packageId>PureMJ.MjRimMods.WhileYouAreNearby</packageId><displayName>While You Are Nearby</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/2784585275</steamWorkshopUrl></li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+    <li>PureMJ.MjRimMods.WhileYouAreNearby</li>
+  </loadAfter>
+</ModMetaData>

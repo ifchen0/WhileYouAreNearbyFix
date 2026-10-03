@@ -1,0 +1,21 @@
+Unofficial performance fix for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2784585275]While You Are Nearby[/url].
+
+[h2]Stutters when colonists pick far-away jobs[/h2]In Dubs Performance Analyzer it shows up as:
+[code]MjRimMods.WhileYouAreNearby.JobGiver_Work_TryIssueJobPackagePatch:After_TryIssueJobPackage[/code]
+at about 1.5 ms per call, with single frames of tens of milliseconds.
+
+[b]Cause:[/b] When a colonist is given a far-away job, While You Are Nearby looks for a job within its search radius (12 cells by default) to do first. For cell-based work (sowing, roofing, snow clearing and so on) it checks every candidate cell on the whole map, both whether there is a job on it ([i]HasJobOnCell[/i]) and whether the colonist can reach it ([i]CanReach[/i]), and only then compares the distance. On a map with large growing zones that is hundreds or thousands of expensive checks, almost all of them for cells that are too far away anyway.
+
+[b]Fix:[/b] Only cells inside the search radius are handed to its loop. Every cell it could pick lies inside that radius, so the chosen job is exactly the same. Item-based work already filtered by distance first and is not touched.
+
+[h2]What it does not fix[/h2]The work givers still list every candidate cell before the far ones are dropped, and While You Are Nearby still repeats a job search that vanilla has just done. In my colony the biggest spikes roughly halved (48 ms to 25 ms), but they did not go away.
+
+If they still bother you, open While You Are Nearby's settings and exclude [i]Growing[/i], [i]Construction[/i] or [i]Cleaning[/i] under "Excluded nearby work types". That removes most of the remaining cost, at the price of colonists no longer doing those jobs on the way.
+
+[h2]Notes[/h2][list]
+[*]Safe to add to or remove from an existing save.
+[*]Uses While You Are Nearby's own search radius setting.
+[*]Load after While You Are Nearby.
+[/list]
+[hr][/hr]
+This mod was developed with the help of AI coding tools (Claude Code). Full source code is included in the Source folder for review.
