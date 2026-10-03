@@ -4,7 +4,7 @@
   <author>ifchen0</author>
   <packageId>ifchen0.whileyouarenearbyfix</packageId>
   <supportedVersions><li>1.6</li></supportedVersions>
-  <description>Unofficial performance fix for While You Are Nearby (steamcommunity.com/sharedfiles/filedetails/?id=2784585275).
+  <description>Unofficial performance fix for While You Are Nearby.
 
 Symptom: short stutters (single frames of tens of milliseconds) when colonists pick far-away jobs. In Dubs Performance Analyzer it shows up as MjRimMods.WhileYouAreNearby.JobGiver_Work_TryIssueJobPackagePatch:After_TryIssueJobPackage, at about 1.5 ms per call.
 
