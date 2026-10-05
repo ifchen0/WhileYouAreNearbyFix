@@ -18,4 +18,4 @@ If they still bother you, open While You Are Nearby's settings and exclude [i]Gr
 [*]Load after While You Are Nearby.
 [/list]
 [hr][/hr]
-This mod was developed with the help of AI coding tools (Claude Code). Full source code is included in the Source folder for review.
+This mod was developed with the help of AI coding tools (Claude Code). Full source code is included in the Source folder and on [url=https://github.com/ifchen0/WhileYouAreNearbyFix]GitHub[/url] for review.

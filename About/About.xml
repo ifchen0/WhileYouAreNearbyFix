@@ -3,6 +3,7 @@
   <name>While You Are Nearby Performance Fix</name>
   <author>ifchen0</author>
   <packageId>ifchen0.whileyouarenearbyfix</packageId>
+  <url>https://github.com/ifchen0/WhileYouAreNearbyFix</url>
   <supportedVersions><li>1.6</li></supportedVersions>
   <description>Unofficial performance fix for While You Are Nearby.
 
